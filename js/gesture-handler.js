@@ -11,6 +11,7 @@ AFRAME.registerComponent("gesture-handler", {
 	init: function () {
 		this.handleScale = this.handleScale.bind(this);
 		this.handleRotation = this.handleRotation.bind(this);
+		this.handleMove = this.handleMove.bind(this);
 
 		this.isVisible = true;
 		this.initialScale = this.el.object3D.scale.clone();
@@ -27,16 +28,16 @@ AFRAME.registerComponent("gesture-handler", {
 
 	update: function () {
 		if (this.data.enabled) {
-			this.el.sceneEl.addEventListener("onefingermove", this.handleRotation);
+			this.el.sceneEl.addEventListener("onefingermove", this.handleMove);
 			this.el.sceneEl.addEventListener("twofingermove", this.handleScale);
 		} else {
-			this.el.sceneEl.removeEventListener("onefingermove", this.handleRotation);
+			this.el.sceneEl.removeEventListener("onefingermove", this.handleMove);
 			this.el.sceneEl.removeEventListener("twofingermove", this.handleScale);
 		}
 	},
 
 	remove: function () {
-		this.el.sceneEl.removeEventListener("onefingermove", this.handleRotation);
+		this.el.sceneEl.removeEventListener("onefingermove", this.handleMove);
 		this.el.sceneEl.removeEventListener("twofingermove", this.handleScale);
 	},
 
@@ -62,6 +63,13 @@ AFRAME.registerComponent("gesture-handler", {
 			this.el.object3D.scale.x = this.scaleFactor * this.initialScale.x;
 			this.el.object3D.scale.y = this.scaleFactor * this.initialScale.y;
 			this.el.object3D.scale.z = this.scaleFactor * this.initialScale.z;
+		}
+	},
+
+	handleMove: function(e){
+		if(this.isVisible){
+			this.el.object3D.position.x += event.detail.positionChange.x;
+			this.el.object3D.position.y += event.detail.positionChange.y;
 		}
 	},
 });
