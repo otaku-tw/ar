@@ -72,6 +72,8 @@ AFRAME.registerComponent("gesture-detector", {
 			this.internalState.previousState = currentState;
 		}
 
+		clickLock = false; // when gesture detect, lock the click event (this variable in main.js)
+
 		if (gestureContinues) {
 			const eventDetail = {
 				positionChange: {

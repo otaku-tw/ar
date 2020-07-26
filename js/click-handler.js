@@ -1,13 +1,27 @@
-'use strict'
-
 AFRAME.registerComponent('click-handler', {
 	init: function(){
+		this.handleClick = this.handleClick.bind(this);
+		this.el.addEventListener('click', this.handleClick);
 	},
 
-	update: function(){
-		this.el.addEventListener('click', function(e){
-			// console.log(this.object3D);
-			// alert("Click Picture " + e.target.id[1]);
-		});
-	}
+	remove: function(){
+		this.el.removeEventListener('click', this.handleClick);
+	},
+
+	handleClick: function(e){
+		if(!clickLock)
+		{
+			// console.log(preEl);
+			if(preEl == this.el)
+			{
+				preEl.removeAttribute('color');
+				preEl = null;
+				return;
+			}
+
+			this.el.setAttribute('color', '#ff0000');
+			if(preEl != null) preEl.removeAttribute('color');
+			preEl = this.el;
+		}
+	},
 });
