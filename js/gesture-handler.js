@@ -4,7 +4,7 @@ AFRAME.registerComponent("gesture-handler", {
 	schema: {
 		enabled: { default: true },
 		rotationFactor: { default: 5 },
-		moveFactor: { default: 400 },
+		moveFactor: { default: 0.6 },
 		minScale: { default: 0.25 },
 		maxScale: { default: 2.0 },
 	},
@@ -52,8 +52,8 @@ AFRAME.registerComponent("gesture-handler", {
 	},
 
 	handleScale: function (event) {
-		clickLock = true;
 		if (this.isVisible) {
+			clickLock = true;
 			this.scaleFactor *=
 				1 + event.detail.spreadChange / event.detail.startSpread;
 
@@ -69,8 +69,9 @@ AFRAME.registerComponent("gesture-handler", {
 	},
 
 	handleMove: function(e){
-		clickLock = true;
 		if(this.isVisible){
+			if( Math.abs(e.detail.positionChange.x) + Math.abs(e.detail.positionChange.y) < 0.0005) return;
+			clickLock = true;
 			this.el.object3D.position.x +=
 				e.detail.positionChange.x * this.data.moveFactor;
 			this.el.object3D.position.y -=
