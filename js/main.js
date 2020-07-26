@@ -1,5 +1,3 @@
-'use strict'
-
 /* Global Variables */
 
 var clickLock = true;

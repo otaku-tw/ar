@@ -9,18 +9,18 @@ AFRAME.registerComponent('click-handler', {
 	},
 
 	handleClick: function(e){
-		if(!clickLock)
-		{
-			// console.log(preEl);
-			if(preEl == this.el)
-			{
-				preEl.removeAttribute('color');
+		if(!clickLock){
+			let nowPath = this.el.getAttribute('src');
+			if(preEl == this.el){
+				this.el.setAttribute('src', nowPath.replace('color', 'plastic'));
 				preEl = null;
 				return;
 			}
-
-			this.el.setAttribute('color', '#ff0000');
-			if(preEl != null) preEl.removeAttribute('color');
+			this.el.setAttribute('src', nowPath.replace('plastic', 'color'));
+			if(preEl != null){
+				let oldPath = preEl.getAttribute('src');
+				preEl.setAttribute('src', oldPath.replace('color', 'plastic'));
+			}
 			preEl = this.el;
 		}
 	},

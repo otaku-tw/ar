@@ -13,6 +13,7 @@
 <body style="margin : 0px; overflow: hidden;">
 	<a-scene embedded arjs='sourceType: webcam; debugUIEnabled:false;' gesture-detector>
 		<a-entity cursor="rayOrigin: mouse" raycaster="objects: .clickable; useWorldCoordinates: true;"></a-entity>
+		<a-assets><!-- add all image assets --></a-assets>
 		<a-entity position="0 0 -1" scale="0.001 0.001" gesture-handler>
 			<a-image id="p1" src="img/plastic/p1.png" width="199" height="237" position="-477.5 -65" class="clickable" click-handler></a-image>
 			<a-image id="p2" src="img/plastic/p2.png" width="293" height="239" position="-259 -59" class="clickable" click-handler></a-image>
