@@ -12,14 +12,14 @@ AFRAME.registerComponent('click-handler', {
 		if(!clickLock){
 			let nowPath = this.el.getAttribute('src');
 			if(preEl == this.el){
-				this.el.setAttribute('src', nowPath.replace('color', 'plastic'));
+				this.el.setAttribute('src', nowPath.replace('color', 'ori'));
 				preEl = null;
 				return;
 			}
-			this.el.setAttribute('src', nowPath.replace('plastic', 'color'));
+			this.el.setAttribute('src', nowPath.replace('ori', 'color'));
 			if(preEl != null){
 				let oldPath = preEl.getAttribute('src');
-				preEl.setAttribute('src', oldPath.replace('color', 'plastic'));
+				preEl.setAttribute('src', oldPath.replace('color', 'ori'));
 			}
 			preEl = this.el;
 		}
