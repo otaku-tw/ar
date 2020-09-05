@@ -1,3 +1,3 @@
 @echo off
 cls
-py -3 -m http.server 80
+py -3 -m http.server -d src/ 80 
