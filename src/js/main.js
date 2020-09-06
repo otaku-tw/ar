@@ -1,5 +1,6 @@
 /* Global Variables */
 
+var init = true;
 var clickLock = true;
 var preEl = null;
 var muralData = getMuralData();
@@ -48,4 +49,9 @@ function init_mural(){
 }
 
 function init_markers(){
+}
+
+function alldone(){
+	let el = document.getElementById('arjs-loader');
+	el.style.display = "none";
 }
