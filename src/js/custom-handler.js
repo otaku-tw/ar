@@ -9,7 +9,14 @@ AFRAME.registerComponent('click-handler', {
 	},
 
 	handleClick: function(e){
-		if(init && !clickLock){
+		if(init)
+		{
+			preEl = null;
+			init = false;
+			alldone();
+		}
+		console.log(e);
+		if(!clickLock){
 			let nowPath = this.el.getAttribute('src');
 			if(preEl == this.el){
 				this.el.setAttribute('src', nowPath.replace('color', 'ori'));

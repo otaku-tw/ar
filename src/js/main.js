@@ -1,9 +1,10 @@
 /* Global Variables */
 
-var init = true;
+var init = false;
 var clickLock = true;
 var preEl = null;
 var muralData = getMuralData();
+var firstGen = {"p1":false, "p2":false, "p3":false, "p4":false, "p5":false, "p6":false, "p7":false, "p8":false, "p9":false};
 
 
 
@@ -17,41 +18,29 @@ function getMuralData(){
 	}
 }
 
-function init_assets(){
-	let assets = document.getElementById('assets');
-	for(let i=1; i<=9; i++){
-		let now = 'p' + i;
-		let tmp = document.createElement('img');
-		tmp.setAttribute('id', now + '_ori');
-		tmp.setAttribute('src', 'img/plastic/' + now + '.png');
-		assets.appendChild(tmp);
-		tmp = document.createElement('img');
-		tmp.setAttribute('id', now + '_color');
-		tmp.setAttribute('src', 'img/color/' + now + '.png');
-		assets.appendChild(tmp);
-	}
-}
-
-function init_mural(){
-	let mural = document.getElementById('mural');
-	for(let i=1; i<=9; i++){
-		let now = 'p' + i;
-		let tmp = document.createElement('a-image');
-		tmp.setAttribute('id', now);
-		tmp.setAttribute('src', '#' + now + '_ori');
-		tmp.setAttribute('width', muralData[now].width);
-		tmp.setAttribute('height', muralData[now].height);
-		tmp.setAttribute('position', muralData[now].x + " " + muralData[now].y);
-		tmp.setAttribute('class', 'clickable');
-		tmp.setAttribute('click-handler', '');
-		mural.appendChild(tmp);
-	}
+function alldone(){
+	init = true;
+	let el = document.getElementById('arjs-loader');
+	el.style.display = "none";
+	console.clear();
+	console.log('All Done !')
 }
 
 function init_markers(){
+	let sceneEl = document.querySelector('a-scene');
+	for(let i=1; i<=9; i++){
+		let id = 'p' + i;
+		let markerEl = document.createElement('a-marker');
+		markerEl.setAttribute('id', id);
+		markerEl.setAttribute('type', 'pattern');
+		markerEl.setAttribute('url', 'marker/patt/' + id + '.patt');
+		markerEl.setAttribute('markerhandler', '');
+		markerEl.setAttribute('emitevents', 'true');
+		sceneEl.appendChild(markerEl);
+	}
+	console.clear();
 }
 
-function alldone(){
-	let el = document.getElementById('arjs-loader');
-	el.style.display = "none";
-}
+window.addEventListener('camera-init', (e) => {
+	alldone();
+})
