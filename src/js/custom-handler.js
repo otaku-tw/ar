@@ -10,6 +10,7 @@ AFRAME.registerComponent('click-handler', {
 
 	handleClick: function(e){
 		if(init && !clickLock){
+			console.log(this.el.id);
 			let nowPath = this.el.getAttribute('src');
 			if(preEl == this.el){
 				this.el.setAttribute('src', nowPath.replace('color', 'ori'));
@@ -22,6 +23,7 @@ AFRAME.registerComponent('click-handler', {
 				preEl.setAttribute('src', oldPath.replace('color', 'ori'));
 			}
 			preEl = this.el;
+			alert(this.el.id);
 		}
 	},
 });
