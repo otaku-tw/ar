@@ -5,6 +5,7 @@ var clickLock = true;
 var preEl = null;
 var muralData = getMuralData();
 var firstGen = {"p1":false, "p2":false, "p3":false, "p4":false, "p5":false, "p6":false, "p7":false, "p8":false, "p9":false};
+var TextWindow = false;
 
 
 
@@ -39,6 +40,43 @@ function init_markers(){
 		sceneEl.appendChild(markerEl);
 	}
 	console.clear();
+}
+
+function showText() {
+    if(!TextWindow){
+        TextWindow = true;
+        var Odiv=document.createElement("div");
+        Odiv.id="box";
+        Odiv.className="ex3";
+        Odiv.innerHTML = muralData[preEl.id].story;
+        document.body.appendChild(Odiv);
+        document.getElementById("show-text").innerHTML="Close Text";
+    }
+    else{
+        TextWindow = false;
+        var del = document.getElementById("box");
+        del.parentNode.removeChild(del);
+        document.getElementById("show-text").innerHTML="Text";
+    }
+};
+
+function startbtn(){
+    document.getElementById("start-btn").style.visibility = "hidden";
+    document.getElementById("buttons_area2").style.visibility = "visible";
+}
+
+function closebtn(){
+    if(TextWindow){
+        TextWindow = false;
+        var del = document.getElementById("box");
+        del.parentNode.removeChild(del);
+        document.getElementById("buttons_area2").style.visibility = "hidden";
+        document.getElementById("start-btn").style.visibility = "hidden";
+    }
+    else{
+        document.getElementById("buttons_area2").style.visibility = "hidden";
+        document.getElementById("start-btn").style.visibility = "hidden";
+    }
 }
 
 window.addEventListener('camera-init', (e) => {

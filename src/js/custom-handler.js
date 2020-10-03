@@ -12,18 +12,37 @@ AFRAME.registerComponent('click-handler', {
 		if(init && !clickLock){
 			console.log(this.el.id);
 			let nowPath = this.el.getAttribute('src');
-			if(preEl == this.el){
+			var targList = document.getElementById("start-btn");
+			if(preEl == this.el){ //one picture was colored && click the same picture
 				this.el.setAttribute('src', nowPath.replace('color', 'ori'));
 				preEl = null;
+				targList.innerText = "Start Video";
+				targList.style.visibility = "hidden";
+				document.getElementById("buttons_area2").style.visibility = "hidden"
 				return;
 			}
 			this.el.setAttribute('src', nowPath.replace('ori', 'color'));
-			if(preEl != null){
+			if(preEl != null){  //one picture was colored && click different picture
 				let oldPath = preEl.getAttribute('src');
 				preEl.setAttribute('src', oldPath.replace('color', 'ori'));
+				document.getElementById("show-text").innerText = "Text";
+				if(TextWindow){
+					var del = document.getElementById("box");
+        			del.parentNode.removeChild(del);
+        			TextWindow = false;
+        			document.getElementById("buttons_area2").style.visibility = "hidden";
+				}
+				else if(document.getElementById("buttons_area2").style.visibility == "visible"){
+					document.getElementById("buttons_area2").style.visibility = "hidden";
+				}
 			}
+
+			//no picture was colored && click one picture
 			preEl = this.el;
-			alert(this.el.id);
+			//alert(this.el.id);
+
+			targList.innerText = "Start Video";
+			targList.style.visibility = "visible";
 		}
 	},
 });
