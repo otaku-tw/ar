@@ -51,6 +51,10 @@ function showText() {
         Odiv.innerHTML = muralData[preEl.id].story;
         document.body.appendChild(Odiv);
         document.getElementById("show-text").innerHTML="Close Text";
+        // alert("Hi there!");
+        // var sceneEl = document.querySelector('#redbox');
+        // console.log(sceneEl.getAttribute('position'));
+        // sceneEl.setAttribute('position', {x: -0.05, y: 0, z: -1});
     }
     else{
         TextWindow = false;
@@ -71,11 +75,11 @@ function closebtn(){
         var del = document.getElementById("box");
         del.parentNode.removeChild(del);
         document.getElementById("buttons_area2").style.visibility = "hidden";
-        document.getElementById("start-btn").style.visibility = "hidden";
+        document.getElementById("start-btn").style.visibility = "visible";
     }
     else{
         document.getElementById("buttons_area2").style.visibility = "hidden";
-        document.getElementById("start-btn").style.visibility = "hidden";
+        document.getElementById("start-btn").style.visibility = "visible";
     }
 }
 
