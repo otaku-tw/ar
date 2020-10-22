@@ -6,6 +6,7 @@ var preEl = null;
 var muralData = getMuralData();
 var firstGen = {"p1":false, "p2":false, "p3":false, "p4":false, "p5":false, "p6":false, "p7":false, "p8":false, "p9":false};
 var TextWindow = false;
+var MovieWindow = false;
 
 
 
@@ -51,22 +52,33 @@ function showText() {
         Odiv.innerHTML = muralData[preEl.id].story;
         document.body.appendChild(Odiv);
         document.getElementById("show-text").innerHTML="Close Text";
-        // alert("Hi there!");
-        // var sceneEl = document.querySelector('#redbox');
-        // console.log(sceneEl.getAttribute('position'));
-        // sceneEl.setAttribute('position', {x: -0.05, y: 0, z: -1});
+        document.getElementById("MovieW").style.top = "30%";
     }
     else{
         TextWindow = false;
         var del = document.getElementById("box");
         del.parentNode.removeChild(del);
         document.getElementById("show-text").innerHTML="Text";
+        document.getElementById("MovieW").style.top = "50%";
     }
 };
 
 function startbtn(){
     document.getElementById("start-btn").style.visibility = "hidden";
     document.getElementById("buttons_area2").style.visibility = "visible";
+    if(!MovieWindow){
+        MovieWindow = true;
+        var movieEl = document.createElement("VIDEO");
+        movieEl.setAttribute("src","movie/" + preEl.id +".mp4" );
+        movieEl.setAttribute("class", "Movie");
+        movieEl.setAttribute("id", "MovieW");
+        movieEl.setAttribute("width", "854");
+        movieEl.setAttribute("height", "400");
+        movieEl.setAttribute("controls", "controls");
+        movieEl.setAttribute("autoplay", "autoplay");
+        movieEl.setAttribute("loop", "loop");
+        document.body.appendChild(movieEl);
+    }
 }
 
 function closebtn(){
@@ -81,6 +93,9 @@ function closebtn(){
         document.getElementById("buttons_area2").style.visibility = "hidden";
         document.getElementById("start-btn").style.visibility = "visible";
     }
+    var del = document.getElementById("MovieW");
+    del.parentNode.removeChild(del);
+    MovieWindow = false;
 }
 
 window.addEventListener('camera-init', (e) => {

@@ -19,6 +19,18 @@ AFRAME.registerComponent('click-handler', {
 				targList.innerText = "Start Video";
 				targList.style.visibility = "hidden";
 				document.getElementById("buttons_area2").style.visibility = "hidden"
+				if(TextWindow){
+					var del = document.getElementById("box");
+        			del.parentNode.removeChild(del);
+        			TextWindow = false;
+        			document.getElementById("buttons_area2").style.visibility = "hidden";
+        			document.getElementById("show-text").innerText = "Text";
+				}
+				if(MovieWindow){
+					var del = document.getElementById("MovieW");
+        			del.parentNode.removeChild(del);
+        			MovieWindow = false;
+				}
 				return;
 			}
 			this.el.setAttribute('src', nowPath.replace('ori', 'color'));
@@ -34,6 +46,11 @@ AFRAME.registerComponent('click-handler', {
 				}
 				else if(document.getElementById("buttons_area2").style.visibility == "visible"){
 					document.getElementById("buttons_area2").style.visibility = "hidden";
+				}
+				if(MovieWindow){
+					var del = document.getElementById("MovieW");
+        			del.parentNode.removeChild(del);
+        			MovieWindow = false;
 				}
 			}
 

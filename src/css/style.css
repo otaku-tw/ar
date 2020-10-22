@@ -16,16 +16,16 @@
 	color: white;
 }
 div.ex3 {
-  width:40%; 
-  height:70%; 
+  width:70%; 
+  height:30%; 
   background:#ffffff; 
   text-align:center; 
   line-height:20px; 
   font-size: 120%;
   z-index:11; 
   position:absolute; 
-  bottom:15%; 
-  right:2.5%;
+  bottom:10%; 
+  right:15%;
   overflow: auto;
 }
 #buttons_area1 {
@@ -82,4 +82,12 @@ div.ex3 {
   color: black;
   width: 8em;
   height: 2em;
+}
+video.Movie {
+  z-index:11; 
+  position:absolute; 
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: auto;
 }
